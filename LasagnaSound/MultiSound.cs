@@ -23,7 +23,16 @@ namespace LasagnaSound
         private int[] timesPlaying;
         void Awake()
         {
+            //Get gameobject's audioSource so we can play our audios
+            //if none exist, add new one
             audioSource = GetComponent<AudioSource>();
+
+            if(audioSource == null)
+			{
+                audioSource = gameObject.AddComponent<AudioSource>();
+			}
+
+            //TODO que es timesPlaying?
             timesPlaying = new int[bundle.clips.Length];
             for (int i = 0; i < timesPlaying.Length; i++)
                 timesPlaying[i] = 0;
@@ -56,7 +65,8 @@ namespace LasagnaSound
                     Debug.Log(bundle.clips[nextClip].name);
                     timesPlaying[nextClip]++;
                     totalPlaying++;
-                    audioSource.PlayOneShot(bundle.clips[nextClip], volume.Evaluate(intensity));
+                    //audioSource.PlayOneShot(bundle.clips[nextClip], volume.Evaluate(intensity));
+                    audioSource.PlayOneShot(bundle.clips[nextClip]);
                     StartCoroutine(playOnShotEnd(nextClip, bundle.clips[nextClip].length));
 
                 }
