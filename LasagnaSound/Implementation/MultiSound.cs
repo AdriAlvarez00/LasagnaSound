@@ -5,17 +5,15 @@ using UnityEngine;
 
 namespace LasagnaSound
 {
-    public class MultiSound : MonoBehaviour
+    class MultiSound : IntensityDrivenController
     {
         [SerializeField] ClipBundle bundle;
-        [SerializeField] float intensity = 1.0f;
-        [SerializeField] AnimationCurve volume;
-        [SerializeField] int minSimultaneousPlaying;
-        [SerializeField] int maxSimultaneousPlaying;
-        [SerializeField] int maxSimultaneousRepeat;
-        [SerializeField] float minPlayInterval;
-        [SerializeField] float maxPlayInterval;
-        [SerializeField] bool active = true;
+        private bool alive = true; //Set false to kill Coroutine
+        [SerializeField] public FunctionValue volume = new FunctionValue("Volume");
+        [SerializeField] public FunctionValue maxSimultaneousPlaying = new FunctionValue("Max simultaneous sounds",0.0f,100.0f,false);
+        [SerializeField] public FunctionValue maxSimultaneousRepeat = new FunctionValue("Max sound repeats", 0.0f, 100.0f, false);
+        [SerializeField] public FunctionValue minPlayInterval = new FunctionValue("Min play interval", 0.1f, 100.0f, true);
+        [SerializeField] public FunctionValue maxPlayInterval = new FunctionValue("Max play interval", 0.1f, 100.0f, true);
 
 
         private AudioSource audioSource;
@@ -32,10 +30,12 @@ namespace LasagnaSound
                 audioSource = gameObject.AddComponent<AudioSource>();
 			}
 
-            //TODO que es timesPlaying?
             timesPlaying = new int[bundle.clips.Length];
             for (int i = 0; i < timesPlaying.Length; i++)
                 timesPlaying[i] = 0;
+
+            Debug.Log("Aguoken");
+
         }
 
         IEnumerator playOnShotEnd(int index, float seconds)
@@ -47,9 +47,9 @@ namespace LasagnaSound
 
         IEnumerator PlaySound()
         {
-            while (active)
+            while (alive)
             {
-                if (totalPlaying < maxSimultaneousPlaying)
+                if (totalPlaying < maxSimultaneousPlaying.getValue(m_intensity))
                 {
                     int nextClip;
                     int i = 0;
@@ -58,19 +58,18 @@ namespace LasagnaSound
                         nextClip = UnityEngine.Random.Range(0, bundle.clips.Length);
                         i++;
                     }
-                    while (timesPlaying[nextClip] >= maxSimultaneousPlaying && i < 1000);
+                    while (timesPlaying[nextClip] >= maxSimultaneousPlaying.getValue(GetIntensity()) && i < 1000);
                     if (i >= 1000)
                         Debug.LogError("Infinite loop choosing clip");
 
                     Debug.Log(bundle.clips[nextClip].name);
                     timesPlaying[nextClip]++;
                     totalPlaying++;
-                    //audioSource.PlayOneShot(bundle.clips[nextClip], volume.Evaluate(intensity));
-                    audioSource.PlayOneShot(bundle.clips[nextClip]);
+                    audioSource.PlayOneShot(bundle.clips[nextClip], volume.getValue(GetIntensity()));
                     StartCoroutine(playOnShotEnd(nextClip, bundle.clips[nextClip].length));
 
                 }
-                yield return new WaitForSeconds(UnityEngine.Random.Range(minPlayInterval, maxPlayInterval));
+                yield return new WaitForSeconds(UnityEngine.Random.Range(minPlayInterval.getValue(m_intensity), maxPlayInterval.getValue(m_intensity)));
             }
         }
 
