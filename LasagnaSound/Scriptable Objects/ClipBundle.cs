@@ -7,6 +7,6 @@ namespace LasagnaSound
     [CreateAssetMenu(fileName = "newClipBundle", menuName ="LasagnaSound/ClipBundle")]
     class ClipBundle : ScriptableObject
     {
-        public AudioClip[] clips;
+        [SerializeField] public AudioClip[] clips;
     }
 }

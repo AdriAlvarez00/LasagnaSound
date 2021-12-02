@@ -14,7 +14,7 @@ namespace LasagnaSound
     [CreateAssetMenu(fileName = "newSoundLayer", menuName = "LasagnaSound/SoundLayer")]
     class SoundLayer : ScriptableObject
     {
-        [SerializeField] public IntensityDrivenController sound;
+        [SerializeField] public MultiSound sound;
         [SerializeField] public AnimationCurve intensityCurve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
         [SerializeField, Range(0.0f,1.0f)] public float inPoint = 0.0f, outPoint = 1.0f;
     }
