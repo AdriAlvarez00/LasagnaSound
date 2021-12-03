@@ -12,6 +12,7 @@ namespace LasagnaSound
     /// a SoundLasagna using curves
     /// </summary>
     [CreateAssetMenu(fileName = "newSoundLayer", menuName = "LasagnaSound/SoundLayer")]
+    [System.Serializable]
     class SoundLayer : ScriptableObject
     {
         [SerializeField] public MultiSound sound;

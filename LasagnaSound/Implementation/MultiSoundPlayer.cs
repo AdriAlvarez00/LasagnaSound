@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace LasagnaSound
@@ -22,6 +21,13 @@ namespace LasagnaSound
 			timesPlaying[index]--;
 		}
 
+		private float getRandomPitchMod()
+        {
+			float var = multiSound.pitchModVariance.getValue(intensity);
+			return UnityEngine.Random.Range(multiSound.pitchModifier - var, multiSound.pitchModifier + var);
+
+		}
+
 		IEnumerator PlaySound()
 		{
 			while (active)
@@ -42,6 +48,7 @@ namespace LasagnaSound
 					Debug.Log(multiSound.bundle.clips[nextClip].name);
 					timesPlaying[nextClip]++;
 					totalPlaying++;
+					audioSource.pitch = 1 + getRandomPitchMod();
 					audioSource.PlayOneShot(multiSound.bundle.clips[nextClip], multiSound.volume.getValue(intensity));
 					StartCoroutine(playOnShotEnd(nextClip, multiSound.bundle.clips[nextClip].length));
 

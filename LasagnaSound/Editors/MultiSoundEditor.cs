@@ -29,6 +29,10 @@ namespace LasagnaSound
 			mSound.maxSimultaneousRepeat.ShowInEditor();
 			mSound.minPlayInterval.ShowInEditor();
 			mSound.maxPlayInterval.ShowInEditor();
+			EditorGUILayout.BeginHorizontal();
+			mSound.pitchModifier = EditorGUILayout.FloatField("Pitch", mSound.pitchModifier);
+			mSound.pitchModVariance.ShowInEditor();
+			EditorGUILayout.EndHorizontal();
 		}
 	}
 }

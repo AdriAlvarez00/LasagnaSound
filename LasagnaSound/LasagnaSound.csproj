@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\ClipBundleGenerator.cs" />
     <Compile Include="Implementation\MultiSoundPlayer.cs" />
     <Compile Include="Implementation\SoundLasagna.cs" />
     <Compile Include="Scriptable Objects\ClipBundle.cs" />

@@ -52,14 +52,12 @@ namespace LasagnaSound.Implementation
 			{
 				if (m_intensity >= layers[i].inPoint && m_intensity <= layers[i].outPoint)
 				{
-					Debug.Log("playing");
 					float normalizedValue = (m_intensity - layers[i].inPoint) / (layers[i].outPoint - layers[i].inPoint);
 					players[i].intensity = layers[i].intensityCurve.Evaluate(normalizedValue);
 					players[i].SetActive(true);
 				}
 				else
 				{
-					Debug.Log("not playing");
 					players[i].intensity = 0.0f;
 					players[i].SetActive(false);
 				}

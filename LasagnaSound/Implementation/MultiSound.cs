@@ -6,6 +6,7 @@ using UnityEngine;
 namespace LasagnaSound
 {
     [CreateAssetMenu(fileName = "newMultiSound", menuName = "LasagnaSound/MultiSound")]
+    [System.Serializable]
     class MultiSound : ScriptableObject
     {
         [SerializeField] public ClipBundle bundle;
@@ -14,5 +15,7 @@ namespace LasagnaSound
         [SerializeField] public FunctionValue maxSimultaneousRepeat = new FunctionValue("Max sound repeats", 0.0f, 100.0f, false);
         [SerializeField] public FunctionValue minPlayInterval = new FunctionValue("Min play interval", 0.1f, 100.0f, true);
         [SerializeField] public FunctionValue maxPlayInterval = new FunctionValue("Max play interval", 0.1f, 100.0f, true);
+        [SerializeField] public float pitchModifier = 0.0f;
+        [SerializeField] public FunctionValue pitchModVariance = new FunctionValue("Pitch variance interval", 0.0f, 10f, true);
     }
 }
