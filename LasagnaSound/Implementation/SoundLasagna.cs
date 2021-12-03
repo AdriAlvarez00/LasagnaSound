@@ -12,14 +12,14 @@ namespace LasagnaSound.Implementation
 	/// </summary>
 	class SoundLasagna : IntensityDrivenController
 	{
-		[SerializeField] SoundLayer[] layers;
+		[SerializeField] MultiSound[] mSounds;
 		private MultiSoundPlayer[] players;
 
 		private AudioSource audioSource;
 
 		void Awake()
 		{
-			players = new MultiSoundPlayer[layers.Length];
+			players = new MultiSoundPlayer[mSounds.Length];
 		}
 
 		void Start()
@@ -37,7 +37,7 @@ namespace LasagnaSound.Implementation
 			for (int i = 0; i < players.Length; i++)
 			{
 				players[i] = gameObject.AddComponent<MultiSoundPlayer>();
-				players[i].Init(audioSource, layers[i].sound);
+				players[i].Init(audioSource, mSounds[i]);
 			}
 
 			//Run checks for layers
@@ -50,10 +50,10 @@ namespace LasagnaSound.Implementation
 			base.SetIntensity(intensity);
 			for (int i = 0; i < players.Length; i++)
 			{
-				if (m_intensity >= layers[i].inPoint && m_intensity <= layers[i].outPoint)
+				if (m_intensity >= mSounds[i].inPoint && m_intensity <= mSounds[i].outPoint)
 				{
-					float normalizedValue = (m_intensity - layers[i].inPoint) / (layers[i].outPoint - layers[i].inPoint);
-					players[i].intensity = layers[i].intensityCurve.Evaluate(normalizedValue);
+					float normalizedValue = (m_intensity - mSounds[i].inPoint) / (mSounds[i].outPoint - mSounds[i].inPoint);
+					players[i].intensity = mSounds[i].intensityCurve.Evaluate(normalizedValue);
 					players[i].SetActive(true);
 				}
 				else

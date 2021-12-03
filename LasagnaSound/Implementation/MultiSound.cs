@@ -17,5 +17,7 @@ namespace LasagnaSound
         [SerializeField] public FunctionValue maxPlayInterval = new FunctionValue("Max play interval", 0.1f, 100.0f, true);
         [SerializeField] public float pitchModifier = 0.0f;
         [SerializeField] public FunctionValue pitchModVariance = new FunctionValue("Pitch variance interval", 0.0f, 10f, true);
+        [SerializeField] public AnimationCurve intensityCurve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
+        [SerializeField, Range(0.0f, 1.0f)] public float inPoint = 0.0f, outPoint = 1.0f;
     }
 }
