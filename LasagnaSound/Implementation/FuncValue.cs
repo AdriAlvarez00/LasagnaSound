@@ -8,9 +8,9 @@ namespace LasagnaSound
     [System.Serializable]
     public class FunctionValue
     {
-        [SerializeField] private bool functionManaged = false;
-        [SerializeField] private AnimationCurve curve = AnimationCurve.Constant(0.0f, 1.0f, 1.0f);
-        [SerializeField] private float fixedValue = 1.0f;
+        [SerializeField] public bool functionManaged = false;
+        [SerializeField] public AnimationCurve curve = AnimationCurve.Constant(0.0f, 1.0f, 1.0f);
+        [SerializeField] public float fixedValue = 1.0f;
 
         string fieldName;
         private float sliderMinimum, sliderMaximum;

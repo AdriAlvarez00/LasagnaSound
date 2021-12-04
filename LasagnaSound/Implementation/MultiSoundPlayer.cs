@@ -25,7 +25,6 @@ namespace LasagnaSound
         {
 			float var = multiSound.pitchModVariance.getValue(intensity);
 			return UnityEngine.Random.Range(multiSound.pitchModifier - var, multiSound.pitchModifier + var);
-
 		}
 
 		IEnumerator PlaySound()

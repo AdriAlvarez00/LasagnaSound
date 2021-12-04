@@ -51,12 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editors\ClipBundleGenerator.cs" />
+    <Compile Include="Editors\FuncValuePropertyDrawer.cs" />
     <Compile Include="Implementation\MultiSoundPlayer.cs" />
     <Compile Include="Implementation\SoundLasagna.cs" />
     <Compile Include="Scriptable Objects\ClipBundle.cs" />
     <Compile Include="Implementation\FuncValue.cs" />
     <Compile Include="Implementation\IntensityDrivenController.cs" />
-    <Compile Include="Implementation\MultiSound.cs" />
+    <Compile Include="Scriptable Objects\MultiSound.cs" />
     <Compile Include="Editors\MultiSoundEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
