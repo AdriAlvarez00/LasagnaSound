@@ -22,7 +22,7 @@ namespace LasagnaSound
 
             Rect rect = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-            funcManaged.boolValue = EditorGUI.ToggleLeft(rect, "", funcManaged.boolValue);
+            funcManaged.boolValue = EditorGUI.Toggle(rect, "", funcManaged.boolValue);
             rect.x += 20;
 
             if (funcManaged.boolValue)

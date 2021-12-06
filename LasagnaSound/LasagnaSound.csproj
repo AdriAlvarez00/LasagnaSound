@@ -58,7 +58,6 @@
     <Compile Include="Implementation\FuncValue.cs" />
     <Compile Include="Implementation\IntensityDrivenController.cs" />
     <Compile Include="Scriptable Objects\MultiSound.cs" />
-    <Compile Include="Editors\MultiSoundEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
