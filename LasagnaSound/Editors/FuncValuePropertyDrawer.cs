@@ -20,12 +20,11 @@ namespace LasagnaSound
 
             EditorGUI.BeginProperty(position, label, property);
 
-            float px = position.x;
             Rect rect = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-            funcManaged.boolValue = EditorGUI.Toggle(rect, "Function", funcManaged.boolValue);
-            rect.x = px;
-            EditorGUI.Toggle(position, property.FindPropertyRelative("functionManaged").boolValue);
+            funcManaged.boolValue = EditorGUI.ToggleLeft(rect, "", funcManaged.boolValue);
+            rect.x += 20;
+
             if (funcManaged.boolValue)
             {
                 EditorGUI.PropertyField(rect, curve);
@@ -36,7 +35,7 @@ namespace LasagnaSound
             }
 
 
-                EditorGUI.EndProperty();
+            EditorGUI.EndProperty();
         }
     }
 }
